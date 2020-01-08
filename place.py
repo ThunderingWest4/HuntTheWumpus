@@ -20,7 +20,7 @@ numPit = 5
 numBat = 3
 
 class Environment():
-    #shape: 
+    #shape:
     #Pentagon where each point connects to a circle inside (5 points)
     #Circle: 10 points, every other one connects to the outside pentagon
     #the points that dont go to the outside pentagon go to the inner pentagon
