@@ -1,6 +1,9 @@
 import random
 import time
 
+Map = {1 : "", 2 : "", 3 : "", 4 : "", 5 : "", 6 : "", 7 : "", 8 : "", 9 : "", 10 : "", 11 : "", 12 : "", 13 : "", 14 : "", 15 : "", 16 : "", 17 : "", 18 : "", 19 : "", 20 : ""}
+
+
 def disp(string, *argv):
     fin = string
     for i in argv:
@@ -14,12 +17,14 @@ def genWumpus(start):
     loc = start
     while(loc != start):
         loc = random.randint(1, 20)
+    loc = int(loc)
+    Map[loc] = "w"
     return loc
 
 numPit = 5
 numBat = 3
 
-class Environment():
+"""class Environment():
     #shape:
     #Pentagon where each point connects to a circle inside (5 points)
     #Circle: 10 points, every other one connects to the outside pentagon
@@ -41,4 +46,4 @@ class Environment():
                 outside_pentagon.append(possible)
                 generated_points.append(possible)
         #Generate Decagon
-        
+"""
