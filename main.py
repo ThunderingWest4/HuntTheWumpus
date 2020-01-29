@@ -6,6 +6,8 @@ paths = {1 : [5, 2, 8], 2 : [1, 3, 10], 3 : [2, 4, 12], 4 : [3, 5, 14], 5 : [4, 
 start = random.randint(1, 20)
 amtArrows = 5
 
+thing = place.env()
+
 running = True
 
 while(running == True):
@@ -31,8 +33,11 @@ while(running == True):
             place.disp("Invalid Response")
     
     #back in main running loop
-    Wump = place.genWumpus(start)
+    Wump = thing.genWumpus(start)
     dead = False
     while(dead == False):
         place.disp("What would you like to do?")
         action = input("")
+        print(thing.Start)
+        print(thing.Map)
+
