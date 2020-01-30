@@ -6,13 +6,15 @@ paths = {1 : [5, 2, 8], 2 : [1, 3, 10], 3 : [2, 4, 12], 4 : [3, 5, 14], 5 : [4, 
 start = random.randint(1, 20)
 amtArrows = 5
 
-thing = place.env()
+thing = place.env(start)
+thing.genEnv()
 
 running = True
 
 while(running == True):
     place.disp("Welcome to Hunt the Wumpus!")
     inst = False
+    current = start
     while(inst == False):
         place.disp("Instructions? Y/N")
         wantInst = input("")
@@ -30,14 +32,57 @@ while(running == True):
             place.disp("Ok, lets get straight to the game!")
             inst = True
         else:
-            place.disp("Invalid Response")
+            place.disp("Invalid Response, try again")
     
     #back in main running loop
     Wump = thing.genWumpus(start)
     dead = False
     while(dead == False):
-        place.disp("What would you like to do?")
-        action = input("")
         print(thing.Start)
         print(thing.Map)
+        place.disp(str("You are in cave " + str(current)))
+        currConnec = paths[current]
+        place.disp(str("You can go to caves: " + str(currConnec[0]) + ", " + str(currConnec[1]) + ", or " + str(currConnec[2])))
+        c1 = currConnec[0]
+        c2 = currConnec[1]
+        c3 = currConnec[2]
+        #near wumpus?
+        if(c1 == Wump or c2 == Wump or c3 == Wump or thing.Map[c1] == 'w' or thing.Map[c2] == 'w' or thing.Map[c3] == 'w'):
+            place.disp("You can smell a terrible stench coming from a nearby cave")
+        #near bats?
+        if(thing.Map[c1] == 'b' or thing.Map[c2] == 'b' or thing.Map[c3] == 'b'):
+            place.disp("You hear the fluttering of many wings nearby")
+        #near pits?
+        if(thing.Map[c1] == 'p' or thing.Map[c2] == 'p' or thing.Map[c3] == 'p'):
+            place.disp("You feel a draft of cool air")
+
+        place.disp("What would you like to do?")
+        place.disp("You can either shoot an arrow (s)")
+        place.disp("or move to one of the connecting caves (m)")
+        valid = False
+        action = ""
+        while(!valid):
+            action = input("")
+            if(action == "s" or action == "S"):
+                shot = False
+                while(shot == False):
+                    place.disp("Which cave would you like to shoot into: ", str(c1), ", ", str(c2), ", or ", str(c3), "?")
+                    cave = input("")
+                    if((cave == str(c1) or cave == str(c2) or cave == str(c3))):
+                        cave = int(cave)
+                        if(cave == Wump):
+                            place.disp("Congratulations! You successfully shot the Wumpus!")
+                        else:
+                            thing.genWumpus()
+                        shot = True
+                    else:
+                        place.disp("Invalid Cave")
+
+
+                valid = True
+            elif(action == "m" or action = "M"):
+
+                valid = True
+        
+        
 

@@ -14,7 +14,13 @@ def disp(string, *argv):
 class env():
 
     Map = {1 : "", 2 : "", 3 : "", 4 : "", 5 : "", 6 : "", 7 : "", 8 : "", 9 : "", 10 : "", 11 : "", 12 : "", 13 : "", 14 : "", 15 : "", 16 : "", 17 : "", 18 : "", 19 : "", 20 : ""}
-    
+    Pits = []
+    Bats = []
+
+    def env(self, starting):
+        self.Start = starting
+        self.genBat()
+        self.genPit()
 
     def genWumpus(self, start):
         loc = start
@@ -23,7 +29,7 @@ class env():
         while(loc == start):
             loc = random.randint(1, 20)
         loc = int(loc)
-        self.Map[loc] = "w"
+        #self.Map[loc] = "w"
         
         return loc
         
@@ -37,7 +43,8 @@ class env():
             while(found != True):
                 test = random.randint(1, 20)
                 if(self.Map[test] == ""):
-                    self.Map[test] = "B"
+                    self.Bats.append(test)
+                    self.Map[test] = "b"
                     found == True
             
 
@@ -47,7 +54,8 @@ class env():
             while(found != True):
                 test = random.randint(1, 20)
                 if(self.Map[test] == ""):
-                    self.Map[test] = "B"
+                    self.Pits.append(test)
+                    self.Map[test] = "p"
                     found == True
 
     """class Environment():
