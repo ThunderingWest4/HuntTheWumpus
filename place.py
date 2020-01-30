@@ -38,25 +38,28 @@ class env():
     numBat = 3
 
     def genBat(self):
-        for i in range(numBat):
+        for i in range(self.numBat):
             found = False
             while(found != True):
+                #print("bat generating")
                 test = random.randint(1, 20)
+                #print(self.Bats)
                 if(self.Map[test] == ""):
                     self.Bats.append(test)
                     self.Map[test] = "b"
-                    found == True
+                    found = True
             
 
     def genPit(self):
-        for i in range(numPit):
+        for i in range(self.numPit):
             found = False
             while(found != True):
+                #print("pit generating")
                 test = random.randint(1, 20)
                 if(self.Map[test] == ""):
                     self.Pits.append(test)
                     self.Map[test] = "p"
-                    found == True
+                    found = True
 
     """class Environment():
         #shape:

@@ -6,8 +6,8 @@ paths = {1 : [5, 2, 8], 2 : [1, 3, 10], 3 : [2, 4, 12], 4 : [3, 5, 14], 5 : [4, 
 start = random.randint(1, 20)
 amtArrows = 5
 
-thing = place.env(start)
-thing.genEnv()
+thing = place.env()
+thing.env(start)
 
 running = True
 
@@ -61,7 +61,7 @@ while(running == True):
         place.disp("or move to one of the connecting caves (m)")
         valid = False
         action = ""
-        while(!valid):
+        while(not valid):
             action = input("")
             if(action == "s" or action == "S"):
                 shot = False
@@ -80,7 +80,7 @@ while(running == True):
 
 
                 valid = True
-            elif(action == "m" or action = "M"):
+            elif(action == "m" or action == "M"):
 
                 valid = True
         
