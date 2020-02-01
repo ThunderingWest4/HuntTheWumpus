@@ -43,7 +43,7 @@ while(running == True):
     #dead = False
     while(isDead == False):
         #print(thing.Start)
-        #print(thing.Map)
+        print(thing.Map)
         place.disp(str("You are in cave " + str(current)))
         currConnec = paths[current]
         place.disp(str("You can go to caves: " + str(currConnec[0]) + ", " + str(currConnec[1]) + ", or " + str(currConnec[2])))
@@ -61,8 +61,7 @@ while(running == True):
             place.disp("You feel a draft of cool air")
 
         place.disp("What would you like to do?")
-        place.disp("You can either shoot an arrow (s)")
-        place.disp("or move to one of the connecting caves (m)")
+        place.disp("You can either shoot an arrow (s) or move to one of the connecting caves (m)")
         valid = False
         action = ""
         while(not valid):
@@ -76,8 +75,16 @@ while(running == True):
                         cave = int(cave)
                         if(cave == Wump):
                             place.disp("Congratulations! You successfully shot the Wumpus!")
+                            isDead = True
+                        elif(thing.Map[cave] == "p"):
+                            place.disp("You hear your arrow clatter down what seems to be a deep pit")
+                            Wump = thing.genWumpus(current)
+                        elif(thing.Map[cave] == "b"):
+                            place.disp("You hear a loud screech")
+                            Wump = thing.genWumpus(current)
                         else:
-                            thing.genWumpus(current)
+                            place.disp("You failed to hit anything important.")
+                            Wump = thing.genWumpus(current)
                         shot = True
                     else:
                         place.disp("Invalid Cave")
@@ -87,25 +94,28 @@ while(running == True):
             elif(action == "m" or action == "M"):
                 done = False
                 while(done == False):
-                    place.disp("Which cave would you move to move into: ", str(c1), ", ", str(c2), ", or ", str(c3), "?")
+                    place.disp("Which cave would you like to move into: ", str(c1), ", ", str(c2), ", or ", str(c3), "?")
                     cave = input("")
                     if((cave == str(c1) or cave == str(c2) or cave == str(c3))):
                             cave = int(cave)
                             if(thing.Map[cave] == "p"):
                                 done = True
                                 dead("falling into a cave")
+                                isDead = True
                             elif(cave == Wump):
                                 done = True
                                 dead("being eaten by the wumpus you just walked into")
+                                isDead = True
                             elif(thing.Map[cave] == "b"):
                                 done = True
                                 place.disp("Congratulations!")
-                                thing.Map[cave] = ""
-                                place.disp("You just ran into a flock of bats")
+                                #thing.Map[cave] = ""
+                                place.disp("You just ran into a flock of bats")                                
                                 found = False
                                 while(found == False):
                                     test = random.randint(1, 20)
-                                    if(thing.Map[test] == ""):
+                                    if(thing.Map[test] == "" and test != Wump):
+                                        thing.Map[current] = ""
                                         current = test
                                         found = True
                                 place.disp("You have been picked up by the bats as they attempted to escape you")
@@ -113,10 +123,13 @@ while(running == True):
                             else: 
                                 done = True
                                 place.disp("You have moved into cave ", cave)
+                                current = cave
                                     
                     else:
                         print("Invalid Cave")
                     valid = True
+            else:
+                place.disp("Inalid Command. Please try again")
     place.disp("Play again? Y/N")
     again = input("")
     if(again == "n" or again == "N"):
@@ -124,6 +137,6 @@ while(running == True):
         place.disp("Thanks for Playing!")
 
     else:
-          place.disp("I didn't read a no so I'm assuming you want to play again!")
-        
+        place.disp("I didn't read a no so I'm assuming you want to play again!")
+        isDead = False
 

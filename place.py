@@ -4,10 +4,10 @@ import time
 def disp(string, *argv):
         fin = string
         for i in argv:
-            fin += i
+            fin += str(i)
         for c in fin:
             print(c, end='')
-            time.sleep(0.05)
+            time.sleep(0.04)
         print("")
 
 
