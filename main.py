@@ -43,7 +43,7 @@ while(running == True):
     #dead = False
     while(isDead == False):
         #print(thing.Start)
-        print(thing.Map)
+        #print(thing.Map)
         place.disp(str("You are in cave " + str(current)))
         currConnec = paths[current]
         place.disp(str("You can go to caves: " + str(currConnec[0]) + ", " + str(currConnec[1]) + ", or " + str(currConnec[2])))
