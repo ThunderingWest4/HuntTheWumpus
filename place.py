@@ -8,6 +8,7 @@ def disp(string, *argv):
         for c in fin:
             print(c, end='')
             time.sleep(0.04)
+        #print(fin)
         print("")
 
 
