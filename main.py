@@ -135,7 +135,8 @@ while(running == True):
     if(again == "n" or again == "N"):
         running = False
         place.disp("Thanks for Playing!")
-
+    elif(again == "Y" or again == "y"):
+        place.disp("Let's do this.")
     else:
         place.disp("I didn't read a no so I'm assuming you want to play again!")
         isDead = False
