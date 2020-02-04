@@ -4,3 +4,5 @@ __pycache__/place.cpython-37.pyc
 place.cpython-37.pyc
 build
 main.spec
+dist
+dist/main.exe

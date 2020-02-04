@@ -15,6 +15,8 @@ def dead(cause):
     place.disp("You died due to ", cause)
     isDead = True
 place.disp("Welcome to Hunt the Wumpus!")
+place.disp("Built in Python by ThunderingWest4")
+place.disp("-----------------------------------")
 while(running == True):
     
     inst = False
