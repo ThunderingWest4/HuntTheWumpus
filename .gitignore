@@ -6,3 +6,4 @@ build
 main.spec
 dist
 dist/main.exe
+.gitignore
