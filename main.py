@@ -2,6 +2,14 @@ import random
 import place
 import time
 
+import webbrowser as wb
+site = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+
+#gonna delay site open as to get rid of suspicion
+
+rickount = random.randint(1, 7)
+
+
 paths = {1 : [5, 2, 8], 2 : [1, 3, 10], 3 : [2, 4, 12], 4 : [3, 5, 14], 5 : [4, 6, 1], 6 : [5, 15, 7], 7 : [6, 8, 17], 8 : [1, 7, 11], 9 : [10, 12, 19], 10 : [2, 9, 11], 11 : [8, 10, 20], 12 : [3, 9, 13], 13 : [12, 14, 18], 14 : [4, 13, 15], 15 : [6, 14, 16], 16 : [15, 17, 18], 17 : [7, 16, 20], 18 : [13, 16, 19], 19 : [9, 18, 20], 20 : [11, 17, 19]}
 start = random.randint(1, 20)
 amtArrows = 5
@@ -18,7 +26,6 @@ place.disp("Welcome to Hunt the Wumpus!")
 place.disp("Built in Python by ThunderingWest4")
 place.disp("-----------------------------------")
 while(running == True):
-    
     inst = False
     current = start
     while(inst == False):
@@ -42,6 +49,7 @@ while(running == True):
     
     #back in main running loop
     Wump = thing.genWumpus(start)
+    
     #dead = False
     while(isDead == False):
         #print(thing.Start)
@@ -132,6 +140,13 @@ while(running == True):
                     valid = True
             else:
                 place.disp("Inalid Command. Please try again")
+            if(rickount==0):
+                print("roll opened")
+                wb.open_new(site)
+                rickount = random.randint(1, 5)
+            else:
+                rickount -= 1
+                
     place.disp("Play again? Y/N")
     again = input("")
     if(again == "n" or again == "N"):
